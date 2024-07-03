@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
     borderRadius: 10,
-    overflow: 'hidden', // Ensures the border radius is applied
+    overflow: 'hidden',
   },
   imageBackground: {
     width: '100%',
@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     borderRadius: 10,
-    opacity: 0.8, // Adjust the opacity for better readability
+    opacity: 1,
   },
   itemText: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adds a semi-transparent background to the text
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,

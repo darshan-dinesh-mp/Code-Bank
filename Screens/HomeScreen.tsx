@@ -1,4 +1,5 @@
 import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { useEffect, useState, useRef } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground, Modal, Animated, TouchableWithoutFeedback, Linking } from 'react-native';
@@ -13,7 +14,13 @@ const HomeScreen = ({ navigation }) => {
       try {
         const response = await fetch('https://raw.githubusercontent.com/nu23mca28/data/main/programs.json');
         const data = await response.json();
-        setCategories(data.categories);
+
+        const categoriesWithProgramCount = data.categories.map(category => ({
+          ...category,
+          programCount: category.programs.length,
+        }));
+
+        setCategories(categoriesWithProgramCount);
       } catch (error) {
         console.log('Error fetching categories:', error);
       }
@@ -54,7 +61,10 @@ const HomeScreen = ({ navigation }) => {
               style={styles.imageBackground}
               imageStyle={styles.imageStyle}
             >
-              <Text style={styles.itemText}>{item.name}</Text>
+              <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                <Text style={styles.itemText}>{item.name}</Text>
+              </View>
+              <Text style={{ fontWeight: '700', backgroundColor: 'rgba(0, 0, 0, 0.5)', fontSize: 12, color: '#EEEEF6', position: 'absolute', right: 0, bottom: 0, padding: 5, borderRadius: 5 }}>Programs: {item.programCount}</Text>
             </ImageBackground>
           </TouchableOpacity>
         )}
@@ -76,20 +86,26 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.modalOverlay}>
             <TouchableWithoutFeedback>
               <Animated.View style={[styles.modalContent, { opacity }]}>
-                <Text style={styles.modalTitle}>Hey there!</Text>
-                <Text style={styles.modalText}>Raise issue in my <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('https://github.com/nu23mca28')}>GitHub</Text></Text>
-
-                <TouchableOpacity
-                  style={styles.closeButton}
-                  onPress={() => setContact(false)}
-                >
-                  <Text style={styles.closeButtonText}>Close</Text>
-                </TouchableOpacity>
+                <View style={{ width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <TouchableOpacity style={{}} onPress={() => setContact(false)}>
+                    <FontAwesomeIcon icon={faXmark} size={24} color="#22223B" />
+                  </TouchableOpacity>
+                </View>
+                <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+                  <Text style={styles.modalTitle}>Hello! I am Darshan</Text>
+                  <Text style={styles.modalText}>For any questions, feedback, or support, you can reach out to me on </Text>
+                  <Text>
+                    <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('https://github.com/nu23mca28')}>GitHub</Text>
+                    <Text>    </Text>
+                    <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('www.linkedin.com/in/darshan-dinesh-mp')}>LinkedIn</Text>
+                  </Text>
+                  <Text style={[styles.modalText, { marginTop: 10 }]}>Thank you for using <Text style={{ fontWeight: '500' }}>Code Bank!</Text></Text>
+                </View>
               </Animated.View>
             </TouchableWithoutFeedback>
           </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+        </TouchableWithoutFeedback >
+      </Modal >
     </View >
   );
 };
@@ -132,7 +148,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -157,7 +172,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: '80%',
-    padding: 20,
+    padding: 10,
     backgroundColor: 'white',
     borderRadius: 10,
     alignItems: 'center',
@@ -165,21 +180,13 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
     color: '#22223B',
   },
   modalText: {
-    fontSize: 16,
-    marginBottom: 10,
+    fontSize: 14,
+    marginVertical: 10,
     textAlign: 'center',
     color: '#22223B',
-  },
-  closeButton: {
-    marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: '#22223B',
-    borderRadius: 5,
   },
   closeButtonText: {
     color: 'white',

@@ -1,3 +1,4 @@
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -94,11 +95,16 @@ const HomeScreen = ({ navigation }) => {
                 <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 10 }}>
                   <Text style={styles.modalTitle}>Hello! I am Darshan</Text>
                   <Text style={styles.modalText}>For any questions, feedback, or support, you can reach out to me on </Text>
-                  <Text>
-                    <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('https://github.com/nu23mca28')}>GitHub</Text>
-                    <Text>    </Text>
-                    <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('www.linkedin.com/in/darshan-dinesh-mp')}>LinkedIn</Text>
-                  </Text>
+                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+                    <TouchableOpacity onPress={() => Linking.openURL('https://github.com/nu23mca28')}>
+                      <FontAwesomeIcon icon={faGithub} size={24} color="#22223B" />
+                      {/* <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('https://github.com/nu23mca28')}>GitHub</Text> */}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/darshan-dinesh-mp')}>
+                      <FontAwesomeIcon icon={faLinkedin} size={24} color="#22223B" />
+                      {/* <Text style={{ fontWeight: '500', textDecorationLine: 'underline', color: 'darkblue' }} onPress={() => Linking.openURL('www.linkedin.com/in/darshan-dinesh-mp')}>LinkedIn</Text> */}
+                    </TouchableOpacity>
+                  </View>
                   <Text style={[styles.modalText, { marginTop: 10 }]}>Thank you for using <Text style={{ fontWeight: '500' }}>Code Bank!</Text></Text>
                 </View>
               </Animated.View>

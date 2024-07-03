@@ -48,7 +48,7 @@ const ProgramsScreen = ({ route, navigation }) => {
             <TouchableOpacity onPress={() => navigation.goBack()}>
                 <FontAwesomeIcon icon={faArrowLeft} size={24} color="#22223B" />
             </TouchableOpacity>
-            <View style={{ display: 'flex', marginVertical: 20, }}>
+            <View style={{ display: 'flex', marginVertical: 15, }}>
                 <Text style={styles.categoryTitle}>{categoryName}</Text>
                 <Text style={styles.categoryDescription}>{categoryDesc}</Text>
             </View>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     categoryTitle: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: '700',
         color: '#22223B',
         marginBottom: 10,

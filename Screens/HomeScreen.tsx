@@ -30,8 +30,6 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        contentContainerStyle={styles.flatListContainer}
       />
     </View>
   );
@@ -52,9 +50,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     color: '#22223B',
-  },
-  flatListContainer: {
-    justifyContent: 'space-between',
   },
   itemContainer: {
     flex: 1,

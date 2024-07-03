@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   const [categories, setCategories] = useState([]);
@@ -25,8 +25,17 @@ const HomeScreen = ({ navigation }) => {
       <FlatList
         data={categories}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('Programs', { categoryId: item.id, categoryName: item.name, categoryDesc: item.description })}>
-            <Text style={styles.itemText}>{item.name}</Text>
+          <TouchableOpacity
+            style={styles.itemContainer}
+            onPress={() => navigation.navigate('Programs', { categoryId: item.id, categoryName: item.name, categoryDesc: item.description })}
+          >
+            <ImageBackground
+              source={{ uri: item.backgroundImage }}
+              style={styles.imageBackground}
+              imageStyle={styles.imageStyle}
+            >
+              <Text style={styles.itemText}>{item.name}</Text>
+            </ImageBackground>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id.toString()}
@@ -56,15 +65,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
-    padding: 20,
-    backgroundColor: '#22223B',
     borderRadius: 10,
-    elevation: 2,
+    overflow: 'hidden', // Ensures the border radius is applied
+  },
+  imageBackground: {
+    width: '100%',
+    height: 150,
+    justifyContent: 'center',
+  },
+  imageStyle: {
+    borderRadius: 10,
+    opacity: 0.8, // Adjust the opacity for better readability
   },
   itemText: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
+    textAlign: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adds a semi-transparent background to the text
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
   },
 });
 

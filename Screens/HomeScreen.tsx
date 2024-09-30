@@ -13,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/nu23mca28/data/main/programs.json');
+        const response = await fetch('https://raw.githubusercontent.com/darshan-dinesh-mp/codebank-data/refs/heads/main/programs.json');
         const data = await response.json();
 
         const categoriesWithProgramCount = data.categories.map(category => ({

@@ -12,7 +12,7 @@ const ProgramsScreen = ({ route, navigation }) => {
     useEffect(() => {
         async function fetchPrograms() {
             try {
-                const response = await fetch('https://raw.githubusercontent.com/nu23mca28/data/main/programs.json');
+                const response = await fetch('https://raw.githubusercontent.com/darshan-dinesh-mp/codebank-data/refs/heads/main/programs.json');
                 const data = await response.json();
                 const selectedCategory = data.categories.find(category => category.id === categoryId);
                 if (selectedCategory) {
